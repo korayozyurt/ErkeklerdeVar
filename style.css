@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    flex-direction: column;
+    /* Dokunmatik gecikmesini ve seçimi engelle */
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.game-container {
+    border: 3px solid #333;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.street {
+    width: 450px;
+    height: 200px;
+    background-color: #555;
+    border-top: 20px solid #f0e68c;
+    border-bottom: 20px solid #f0e68c;
+    position: relative;
+    overflow: hidden;
+}
+
+.car {
+    width: 40px;
+    height: 60px;
+    background-image: url('car.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center;
+    line-height: 60px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: transparent;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+    /* Arabanın dönüş merkezi (ön tekerlekler gibi) */
+    transform-origin: center 70%;
+}
+
+.parked-car {
+    width: 50px;
+    height: 80px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    line-height: 80px;
+    font-weight: bold;
+    position: absolute;
+    top: 50px;
+    transform: translateY(-50%);
+    border-radius: 5px;
+}
+
+.parked-left { left: 50px; }
+.parked-right { right: 50px; }
+
+#message {
+    margin-top: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    min-height: 1.5em; /* Mesajın kaymasını engelle */
+}
+
+/* YENİ: Mobil Kontrol Stilleri */
+.controls {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    width: 150px;
+    height: 100px;
+}
+
+.controls button {
+    font-size: 1.5em;
+    border: none;
+    background-color: #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Butonların grid içindeki yerleşimi */
+#btn-up { grid-column: 1 / 3; grid-row: 1; }
+#btn-down { grid-column: 1 / 3; grid-row: 2; }
+#btn-left { grid-column: 1; grid-row: 1 / 3; transform: translateY(50%); height: 50px; }
+#btn-right { grid-column: 2; grid-row: 1 / 3; transform: translateY(50%); height: 50px; }
+
+/* Dokunma/Tıklama efekti */
+.controls button:active {
+    background-color: #aaa;
+    transform: scale(0.95) translateY(50%); /* Sol/Sağ için ayar */
+}
+#btn-up:active, #btn-down:active {
+    transform: scale(0.95); /* Yukarı/Aşağı için */
+}
+
+/* Sadece dokunmatik olmayan cihazlarda (fare) hover efekti göster */
+@media (hover: hover) and (pointer: fine) {
+    .controls button:hover {
+        background-color: #bbb;
+    }
+}
