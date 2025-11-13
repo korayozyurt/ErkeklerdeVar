@@ -1,22 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     const playerCar = document.getElementById('player-car');
     const message = document.getElementById('message');
+
+    var totalDistance = 0;
     
-    // Araba pozisyonu ve fizik değerleri
+    // initial pos
     let posX = 20;
     let posY = 20;
     let rotation = 0;
     let velocity = 0;
-    let steeringAngle = 0; // Direksiyon açısı
+    let steeringAngle = 0; 
 
-    // Fizik sabitleri
+    // physics
     const acceleration = 0.1;
     const friction = 0.05;
     const maxVelocity = 4;
     const reverseMaxVelocity = -2;
-    const steeringSpeed = 3; // Direksiyonun dönüş hızı
+    const steeringSpeed = 3; 
 
-    // Hangi tuşların basılı tutulduğunu takip et
     const keys = {
         ArrowUp: false,
         ArrowDown: false,
@@ -45,24 +46,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnLeft = document.getElementById('btn-left');
     const btnRight = document.getElementById('btn-right');
 
-    // Dokunma başladığında tuşu 'basılı' olarak ayarla
+    // Dokunma başladığında e tuşu 'basılı olacak
     const handleTouchStart = (key) => (e) => {
         e.preventDefault();
         keys[key] = true;
     };
     
-    // Dokunma bittiğinde tuşu 'bırakılmış' olarak ayarla
+    // Dokunma bittiğinde e tuşu bırakılma olacak
     const handleTouchEnd = (key) => (e) => {
         e.preventDefault();
         keys[key] = false;
     };
 
-    // Olayları butonlara bağla (hem dokunmatik hem de fare tıklaması için)
+    // mobile button
     btnUp.addEventListener('touchstart', handleTouchStart('ArrowUp'));
     btnUp.addEventListener('touchend', handleTouchEnd('ArrowUp'));
     btnUp.addEventListener('mousedown', handleTouchStart('ArrowUp'));
     btnUp.addEventListener('mouseup', handleTouchEnd('ArrowUp'));
-    btnUp.addEventListener('mouseleave', handleTouchEnd('ArrowUp')); // Eğer fare buton dışına çıkarsa
+    btnUp.addEventListener('mouseleave', handleTouchEnd('ArrowUp')); // fare buton dışına çıkarsa
 
     btnDown.addEventListener('touchstart', handleTouchStart('ArrowDown'));
     btnDown.addEventListener('touchend', handleTouchEnd('ArrowDown'));
@@ -83,18 +84,23 @@ document.addEventListener('DOMContentLoaded', () => {
     btnRight.addEventListener('mouseleave', handleTouchEnd('ArrowRight'));
 
 
-    // 3. Oyun Döngüsü (Game Loop)
+    //  (Game Loop)
     function gameLoop() {
         // ----- FİZİK HESAPLAMALARI -----
 
-        // 1. İvmelenme (Gaz/Fren)
+        // İvmelenme (Gaz/Fren)
         if (keys.ArrowUp) {
             velocity += acceleration;
+            totalDistance += velocity;
         } else if (keys.ArrowDown) {
             velocity -= acceleration;
         }
 
-        // 2. Sürtünme
+        if(totalDistance > 200) {
+            window.alert('Hamle Hakkınız doldu');
+        }
+
+        // Sürtünme
         if (velocity > 0) {
             velocity -= friction;
             if (velocity < 0) velocity = 0;
@@ -103,11 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (velocity > 0) velocity = 0;
         }
 
-        // 3. Hız Limitleri
+        // 3Hız Limitleri
         if (velocity > maxVelocity) velocity = maxVelocity;
         if (velocity < reverseMaxVelocity) velocity = reverseMaxVelocity;
 
-        // 4. Direksiyon (Sadece araç hareket ediyorsa döner)
+        // Direksiyon 
         steeringAngle = 0;
         if (Math.abs(velocity) > 0.1) { // Sadece hareket varsa
             if (keys.ArrowLeft) {
@@ -117,11 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 steeringAngle = steeringSpeed;
             }
             
-            // Dönüşü hıza göre ayarla (Geri giderken ters döner)
+            // Dönüşü hıza göre ayarla 
             rotation += steeringAngle * (velocity / maxVelocity);
         }
 
-        // 5. Pozisyon Güncelleme
+        // Pozisyon Güncelleme
         const rad = rotation * (Math.PI / 180);
         // Dönüş açısına göre X ve Y hareketini hesapla
         posX += velocity * Math.sin(rad); // 0 derecede sin(0)=0 (X hareketi yok)
@@ -136,8 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (checkCollision()) {
             message.textContent = "KAZA YAPTIN! 💥";
             playerCar.style.backgroundColor = '#dc3545';
-            velocity = 0; // Arabayı durdur
-            // Oyunu durdurmak için döngüyü temizle (isteğe bağlı)
+            velocity = 0; 
+            // Oyunu durdurmak için
             // clearInterval(gameInterval);
         } else if (checkParking()) {
             message.textContent = "🏆 MÜKEMMEL PARK!";
@@ -145,6 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
             velocity = 0;
             // Oyunu durdur
             clearInterval(gameInterval);
+
+            localStorage.setItem('login', 'parked');
+            window.location.href = '/erkeklergunu.html';
         } else {
             message.textContent = "Aracı park edin.";
             playerCar.style.backgroundColor = 'transparent';

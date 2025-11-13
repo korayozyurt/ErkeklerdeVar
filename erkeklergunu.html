@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Park Etme Oyunu</title>
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <i class="bi bi-shield-check"></i> 19 Kasım: İlham Veren İzler
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#hero">Ana Sayfa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#basarilar">Tarihi Başarılar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#gunumuz">Günümüz Rol Modelleri</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header id="hero" class="bg-primary text-white text-center p-5">
+  <div class="container">
+    <h1 class="display-4 fw-bold">Geçmişten Geleceğe: Dünyayı Şekillendirenler</h1>
+    <p class="lead my-3">Tarihe yön veren, bilime, sanata ve topluma katkı sağlayan biz erkeklerin ilham verici hikayelerini keşfedin.</p>
+    <a href="#basarilar" class="btn btn-light btn-lg">Keşfetmeye Başla</a>
+  </div>
+</header>
+
+<section id="basarilar" class="py-5">
+  <div class="container">
+    <h2 class="text-white text-center mb-5 display-6">Tarihe Yön Verenlerimiz</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+      <div class="col">
+        <div class="card h-100 shadow-sm border-0">
+          <img src="images/science.png" class="card-img-top" alt="Bilim ve Teknoloji">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold">Bilim ve Teknoloji</h5>
+            <p class="card-text">Evrenin sırlarını çözen, teknolojiyi ileri taşıyan dâhiler. (Newton, Pasteur, Alan Turing, Aziz Sancar)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100 shadow-sm border-0">
+          <img src="/images/sanat.png" class="card-img-top" alt="Sanat ve Edebiyat">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold">Sanat ve Edebiyat</h5>
+            <p class="card-text">Duygulara şekil veren, kültürümüzü zenginleştiren ustalar. (Shakespeare, Mozart, Mimar Sinan, Yaşar Kemal)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100 shadow-sm border-0">
+          <img src="/images/engineering.png" class="card-img-top" alt="Mühendislik">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold">Mühendislik</h5>
+            <p class="card-text">Hayalleri matematiğe, fikirleri somut eserlere dönüştürerek medeniyetin temellerini atan Nikola Tesla, Henry Ford, Wright Kardeşler</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-5">
+        <img src="https://via.placeholder.com/400x400.png?text=Ignaz+Semmelweis" class="img-fluid rounded-circle shadow-lg" alt="Öne Çıkan Profil Ignaz Semmelweis">
+      </div>
+      <div class="col-md-7 mt-4 mt-md-0">
+        <h3 class="fw-light">Az Bilinen Kahraman</h3>
+        <h2 class="display-5 fw-bold">Ignaz Semmelweis</h2>
+        <p class="lead">"Annelerin Kurtarıcısı" olarak bilinen Dr. Semmelweis, basit el yıkamanın lohusa ateşini (doğum sonrası enfeksiyon) önlediğini keşfetti. Fikirleri zamanında alay konusu olsa da, bugün tıp pratiğinin temel taşı olan antisepsi kurallarının temelini atarak milyonlarca hayat kurtardı.</p>
+        <a href="#" class="btn btn-primary btn-lg">Hikayesini Tamamını Oku</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gunumuz" class="py-5 text-center bg-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h2 class="display-6">Sadece Geçmiş Değil: Günümüz</h2>
+        <p class="lead my-3">Dünya Erkekler Günü sadece tarihi değil, bugünü de kutlar. İyi bir baba, destekleyici bir eş, akıl sağlığına önem veren bir birey ve topluma katkı sağlayan **pozitif rol modellerini** de onurlandırıyoruz.</p>
+        <a href="#" class="btn btn-success btn-lg">Erkek Sağlığı ve Pozitif Rol Modelleri</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="py-4 bg-dark text-white">
+  <div class="container text-center">
+    <p class="mb-0">&copy; 2025 | Bu sayfa Dünya Erkekler Günü'nü kutlamak amacıyla hazırlanmıştır.</p>
+  </div>
+</footer>
+
+    <script src="erkeklergunu.js"></script>
+    <script src="lib/bootstrap/bootstrap.js"></script>
+</body>
+</html>
