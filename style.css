@@ -95,7 +95,7 @@ body {
 }
 
 /* Butonların grid içindeki yerleşimi */
-#btn-up { grid-column: 1 / 3; grid-row: 1; }
+#btn-up { grid-column: 1 / 3; grid-row: 1; height: 50px;}
 #btn-down { grid-column: 1 / 3; grid-row: 2; }
 #btn-left { grid-column: 1; grid-row: 1 / 3; transform: translateY(50%); height: 50px; }
 #btn-right { grid-column: 2; grid-row: 1 / 3; transform: translateY(50%); height: 50px; }

@@ -86,9 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //  (Game Loop)
     function gameLoop() {
-        // ----- FİZİK HESAPLAMALARI -----
+        // ----- FİZİK  -----
 
-        // İvmelenme (Gaz/Fren)
+        // İvmelenme 
         if (keys.ArrowUp) {
             velocity += acceleration;
             totalDistance += velocity;
@@ -151,35 +151,30 @@ document.addEventListener('DOMContentLoaded', () => {
             velocity = 0;
             // Oyunu durdur
             clearInterval(gameInterval);
-
+            setTimeout(() => {
             localStorage.setItem('login', 'parked');
             window.location.href = '/erkeklergunu.html';
+            },750);
+
         } else {
             message.textContent = "Aracı park edin.";
             playerCar.style.backgroundColor = 'transparent';
         }
     }
 
-    // Çarpışma Kontrolü (Sokak sınırları)
     function checkCollision() {
         const streetWidth = 450;
         const streetHeight = 200;
         const carWidth = 40;
         const carHeight = 60;
 
-        // X sınırları
-        if (posX < 0 || posX > streetWidth - carWidth) return true;
-        // Y sınırları (Yol çizgileri arası)
-        if (posY < 20 || posY > streetHeight - carHeight + 20) return true;
-        
-        // TODO: Diğer arabalara çarpma kontrolü eklenebilir
+        if (posX <= 0 || posX > streetWidth - carWidth) return true;
+        if (posY <= 0 || posY > streetHeight - carHeight) return true;
         
         return false;
     }
 
-    // Park Kontrolü
     function checkParking() {
-        // Hedef Park Alanı (parked-left ve parked-right arası)
         const targetMinX = 50; // parked-left'in sağı (50px + 50px genişlik + boşluk)
         const targetMaxX = 100; // parked-right'ın solu (450px - 50px - 50px genişlik - boşluk)
         const targetMinY = 50;  // Kaldırıma yakın (100px)
@@ -190,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hızı çok düşük olmalı
         const isSlow = Math.abs(velocity) < 0.5;
 
-        console.log(posX);
         if (posX >= targetMinX && posX <= targetMaxX &&
             posY >= targetMinY && posY <= targetMaxY &&
             isRotationCorrect && isSlow) {
@@ -199,6 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
 
-    // Oyunu başlat (60 FPS)
+    // (60 FPS)
     const gameInterval = setInterval(gameLoop, 1000 / 60);
 });
