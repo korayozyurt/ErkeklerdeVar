@@ -102,13 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (clientX < wheelCenterX) {
             keys.ArrowLeft = true;
             keys.ArrowRight = false;
-            steeringWheel.style.transform = 'rotate(-25deg)'; // Sola döndür
+            steeringWheel.style.transform = 'rotate(-60deg)'; // Sola döndür
         } 
         // Dokunma/tıklama orta noktanın sağında mı?
         else {
             keys.ArrowLeft = false;
             keys.ArrowRight = true;
-            steeringWheel.style.transform = 'rotate(25deg)'; // Sağa döndür
+            steeringWheel.style.transform = 'rotate(60deg)'; // Sağa döndür
         }
     };
 
