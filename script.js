@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             velocity -= acceleration;
         }
 
-        if(totalDistance > 200) {
+        if(totalDistance > 20000 && totalDistance < 20100) {
             window.alert('Hamle Hakkınız doldu');
         }
 
