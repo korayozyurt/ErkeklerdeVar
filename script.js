@@ -71,18 +71,64 @@ document.addEventListener('DOMContentLoaded', () => {
     btnDown.addEventListener('mouseup', handleTouchEnd('ArrowDown'));
     btnDown.addEventListener('mouseleave', handleTouchEnd('ArrowDown'));
 
-    btnLeft.addEventListener('touchstart', handleTouchStart('ArrowLeft'));
-    btnLeft.addEventListener('touchend', handleTouchEnd('ArrowLeft'));
-    btnLeft.addEventListener('mousedown', handleTouchStart('ArrowLeft'));
-    btnLeft.addEventListener('mouseup', handleTouchEnd('ArrowLeft'));
-    btnLeft.addEventListener('mouseleave', handleTouchEnd('ArrowLeft'));
+   // 2. Mobil Dokunmatik Kontroller (YENİ DİREKSİYON)
+    const steeringWheel = document.getElementById('steering-wheel');
 
-    btnRight.addEventListener('touchstart', handleTouchStart('ArrowRight'));
-    btnRight.addEventListener('touchend', handleTouchEnd('ArrowRight'));
-    btnRight.addEventListener('mousedown', handleTouchStart('ArrowRight'));
-    btnRight.addEventListener('mouseup', handleTouchEnd('ArrowRight'));
-    btnRight.addEventListener('mouseleave', handleTouchEnd('ArrowRight'));
+    // Direksiyonu bıraktığımızda veya dışına çıktığımızda ne olacağı
+    const stopSteering = (e) => {
+        if (e) e.preventDefault();
+        keys.ArrowLeft = false;
+        keys.ArrowRight = false;
+        steeringWheel.style.transform = 'rotate(0deg)'; // Direksiyonu düzelt
+    };
 
+    // Direksiyona dokunulduğunda veya fare ile tıklandığında
+    const startSteering = (e) => {
+        e.preventDefault();
+        
+        // Dokunma veya tıklama koordinatını al
+        let clientX;
+        if (e.touches) {
+            clientX = e.touches[0].clientX; // Dokunmatik
+        } else {
+            clientX = e.clientX; // Fare
+        }
+
+        // Direksiyonun orta noktasını bul
+        const rect = steeringWheel.getBoundingClientRect();
+        const wheelCenterX = rect.left + rect.width / 2;
+
+        // Dokunma/tıklama orta noktanın solunda mı?
+        if (clientX < wheelCenterX) {
+            keys.ArrowLeft = true;
+            keys.ArrowRight = false;
+            steeringWheel.style.transform = 'rotate(-25deg)'; // Sola döndür
+        } 
+        // Dokunma/tıklama orta noktanın sağında mı?
+        else {
+            keys.ArrowLeft = false;
+            keys.ArrowRight = true;
+            steeringWheel.style.transform = 'rotate(25deg)'; // Sağa döndür
+        }
+    };
+
+    // Dokunmatik Olayları
+    steeringWheel.addEventListener('touchstart', startSteering);
+    steeringWheel.addEventListener('touchmove', startSteering); // Parmağı kaydırınca da çalışır
+    steeringWheel.addEventListener('touchend', stopSteering);
+
+    // Fare Olayları (Masaüstü için)
+    steeringWheel.addEventListener('mousedown', startSteering);
+    steeringWheel.addEventListener('mousemove', (e) => {
+        // Sadece fare basılıyken hareketi algıla (e.buttons === 1)
+        if (e.buttons === 1) {
+            startSteering(e);
+        }
+    });
+    steeringWheel.addEventListener('mouseup', stopSteering);
+    steeringWheel.addEventListener('mouseleave', stopSteering); // Fare dışarı çıkarsa
+
+    // btnUp ve btnDown kodları olduğu gibi kalacak...
 
     //  (Game Loop)
     function gameLoop() {

@@ -164,3 +164,59 @@ body {
     display: flex; /* Gizli olan kontrolleri görünür yap */
   }
 }
+
+/* Direksiyonun kendisi */
+#steering-wheel {
+  width: 120px;  /* Butonlardan daha geniş */
+  height: 120px; /* Butonlardan daha geniş */
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 6px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%; /* Tamamen yuvarlak */
+  position: relative; /* İç çubuklar için */
+  
+  /* Dokunma hissiyatı */
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  
+  /* Dokunma ile dönerken yumuşak geçiş */
+  transition: transform 0.1s ease-out;
+}
+
+/* Direksiyonun içindeki çubuklar (Görsel amaçlı) */
+#steering-wheel::before,
+#steering-wheel::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+}
+
+/* Dikey çubuk */
+#steering-wheel::before {
+  width: 10px;
+  height: 40px;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+}
+
+/* Yatay çubuk */
+#steering-wheel::after {
+  width: 80px;
+  height: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Direksiyonun yerleştiği grubu ortalamak için */
+.steering-controls {
+  /* Zaten flex-direction: row; idi, ortalayalım */
+  justify-content: center;
+  flex-grow: 1; /* Sol tarafın boşluğunu doldurur */
+}
+
+.movement-controls {
+  /* Sağ tarafı biraz iter */
+  flex-shrink: 0;
+}
