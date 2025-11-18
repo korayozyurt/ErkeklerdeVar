@@ -1,3 +1,4 @@
+localStorage.setItem('soru', 'buyrun neye baktınız :)');
 document.addEventListener('DOMContentLoaded', () => {
     const playerCar = document.getElementById('player-car');
     const message = document.getElementById('message');
@@ -221,15 +222,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function checkParking() {
-        const targetMinX = 50; // parked-left'in sağı (50px + 50px genişlik + boşluk)
-        const targetMaxX = 100; // parked-right'ın solu (450px - 50px - 50px genişlik - boşluk)
-        const targetMinY = 50;  // Kaldırıma yakın (100px)
-        const targetMaxY = 130; // Kaldırıma yakın (100px)
+        const targetMinX = 53; // parked-left'in sağı (50px + 50px genişlik + boşluk)
+        const targetMaxX = 75; // parked-right'ın solu (450px - 50px - 50px genişlik - boşluk)
+        const targetMinY = 70;  // Kaldırıma yakın (100px)
+        const targetMaxY = 87; // Kaldırıma yakın (100px)
 
         // Düz park edilmeli (0 derece veya 360'ın katları)
         const isRotationCorrect = (Math.abs(rotation % 360) < 10 || Math.abs(rotation % 360) > 350);
         // Hızı çok düşük olmalı
         const isSlow = Math.abs(velocity) < 0.5;
+
+        console.log(`x:${posX}, y: ${posY}`);
 
         if (posX >= targetMinX && posX <= targetMaxX &&
             posY >= targetMinY && posY <= targetMaxY &&

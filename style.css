@@ -1,4 +1,4 @@
-body {
+html, body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -7,8 +7,14 @@ body {
     margin: 0;
     background-color: #f0f0f0;
     flex-direction: column;
-    /* Dokunmatik gecikmesini ve seçimi engelle */
-    touch-action: manipulation;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    /* En önemli kısım: Taşan içeriği gizle ve scrollbar'ı kapat */
+    overflow: hidden;
+    /* Dokunmatik */
+    touch-action: none;
     user-select: none;
 }
 
