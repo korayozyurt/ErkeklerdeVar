@@ -9,11 +9,9 @@
     <meta property="og:description"
         content="Erkeklerin tehlikeli işlerdeki fedakarlıklarından, bilime ve sanata katkılarına...">
 
-    <meta property="og:image"
-        content="https://dunyaerkeklergunu.org/images/ogmedya.png">
+    <meta property="og:image" content="https://dunyaerkeklergunu.org/images/ogmedya.png">
 
-    <meta property="og:url"
-        content="https://dunyaerkeklergunu.org/images/ogmedya.png">
+    <meta property="og:url" content="https://dunyaerkeklergunu.org/images/ogmedya.png">
 
     <meta property="og:type" content="website">
 
@@ -48,12 +46,25 @@
         <div id="message">Aracı park edin.</div>
     </div>
 
-    <div class="controls">
-        <button id="btn-up">▲</button>
-        <button id="btn-down">▼</button>
-        <button id="btn-left">◀</button>
-        <button id="btn-right">▶</button>
+    <div class="container">
+        <div class="mobile-controls">
+            <div class="d-flex justify-content-around w-100 mt-3">
+                <div class="control-group steering-controls">
+                    <button id="btn-left">⬅️</button>
+                    <button id="btn-right">➡️</button>
+                </div>
+
+                <div class="control-group movement-controls">
+                    <button id="btn-down">⬇️</button>
+                    <button id="btn-up">⬆️</button>
+                </div>
+            </div>
+
+
+        </div>
     </div>
+
+
 
     <script src="lib/bootstrap/bootstrap.js"></script>
     <script src="script.js"></script>

@@ -115,3 +115,52 @@ body {
         background-color: #bbb;
     }
 }
+
+
+/* Her bir kontrol grubunun (sol ve sağ) stili */
+.control-group {
+  display: flex;
+  gap: 15px; /* Butonlar arası boşluk */
+}
+
+/* Sol/Sağ butonları YATAY hizalar */
+.steering-controls {
+  flex-direction: row;
+}
+
+/* Gaz/Fren butonlarını DİKEY hizalar (Gaz üste gelir) */
+.movement-controls {
+  flex-direction: column-reverse;
+}
+
+/* Butonların kendisi */
+.mobile-controls button {
+  width: 65px;
+  height: 65px;
+  border: 2px solid white;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  font-size: 2rem;
+  line-height: 1;
+  border-radius: 50%; /* Yuvarlak butonlar */
+  
+  /* Dokunma hissiyatı için */
+  user-select: none; /* Metin seçilmesini engeller */
+  -webkit-tap-highlight-color: transparent; /* Dokunma vurgusunu kaldırır */
+}
+
+/* Butona basıldığında */
+.mobile-controls button:active {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(0.95);
+}
+
+/* MEDYA SORGUSU: 
+  Bu stiller sadece ekran genişliği 768px veya daha az 
+  olduğunda (yani tablet ve telefonlarda) uygulanır.
+*/
+@media (max-width: 768px) {
+  .mobile-controls {
+    display: flex; /* Gizli olan kontrolleri görünür yap */
+  }
+}
